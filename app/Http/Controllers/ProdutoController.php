@@ -15,29 +15,57 @@ class ProdutoController extends Controller
     }
     public function store(Request $request)
     {
-        return Produtos::create([
-            'nome' => $request->nome,
-            'valor' => $request->valor,
-            'descricao' => $request->descricao,
-            'id_user_criador' => 0//Arrumar para o ID do usuário depois!
-        ]);
+        try {
+            $produto = new Produtos();
+            $produto->nome = $request->nome;
+            $produto->valor = $request->valor;
+            $produto->descricao = $request->descricao;
+            $produto->id_user_criador = 0;
+
+            if ($produto->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Produto Criado com sucesso!'
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
     public function edit($id)
     {
         return response()->json(Produtos::findOrFail($id));
     }
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        return Produtos::where('id', $request->id)->update(
-            [
-                'nome' => $request->nome,
-                'valor' => $request->valor,
-                'descricao' => $request->descricao,
-            ]
-        );
-       
+        try {
+            $produto =  Produtos::findOrFail($id);
+            $produto->nome = $request->nome;
+            $produto->valor = $request->valor;
+            $produto->descricao = $request->descricao;
+            $produto->id_user_criador = 0;
+            if ($produto->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Produto Editado com sucesso!'
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
-    public function destroy($id){
-        return Produtos::where('id', $id)->delete();
+    public function destroy($id)
+    {
+        try {
+            $produto = Produtos::findOrFail($id);
+            if ($produto->delete()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Produto Removido com sucesso!'
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
