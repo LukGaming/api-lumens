@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function getAllProducts()
+    public function index()
     {
         return Produtos::paginate(10);
     }
-    public function insertProducts(Request $request)
+    public function store(Request $request)
     {
         return Produtos::create([
             'nome' => $request->nome,
@@ -22,11 +22,11 @@ class ProdutoController extends Controller
             'id_user_criador' => 0//Arrumar para o ID do usuário depois!
         ]);
     }
-    public function getProductById($id)
+    public function edit($id)
     {
         return response()->json(Produtos::findOrFail($id));
     }
-    public function editProductById(Request $request)
+    public function update(Request $request)
     {
         return Produtos::where('id', $request->id)->update(
             [
@@ -37,7 +37,7 @@ class ProdutoController extends Controller
         );
        
     }
-    public function deleteProductById($id){
+    public function destroy($id){
         return Produtos::where('id', $id)->delete();
     }
 }
