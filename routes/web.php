@@ -5,7 +5,6 @@
 use App\Http\Controllers\ProdutoController;
 
 
-
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/produtos',  'ProdutoController@index');
     $router->post('/produtos',  'ProdutoController@store');
