@@ -17,4 +17,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     //Rotas de Categorias
     $router->get('/categorias',  'CategoriasController@index');
     $router->post('/categorias',  'CategoriasController@store');
+    $router->get('/categorias/{id}',  'CategoriasController@edit');
+    $router->patch('/categorias/{id}',  'CategoriasController@update');
+    $router->delete('/categorias/{id}',  'CategoriasController@destroy');
+    //Rotas de Categorias
 });
