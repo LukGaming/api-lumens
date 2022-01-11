@@ -21,4 +21,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->patch('/categorias/{id}',  'CategoriasController@update');
     $router->delete('/categorias/{id}',  'CategoriasController@destroy');
     //Rotas de Categorias
+
+    //Rotas de Usuarios
+    $router->get('/usuarios',  'UserController@index');
+    $router->post('/usuarios',  'UserController@store');
 });
