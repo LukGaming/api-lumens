@@ -7,7 +7,7 @@ use App\Models\Produtos;
 
 use Illuminate\Http\Request;
 
-class ProdutoController extends Controller
+class ProdutosController extends Controller
 {
     public function index()
     {
@@ -25,7 +25,8 @@ class ProdutoController extends Controller
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Produto Criado com sucesso!'
+                    'message' => 'Produto Criado com sucesso!',
+                    'produto' => $produto
                 ]);
             }
         } catch (\Exception $e) {
@@ -43,11 +44,13 @@ class ProdutoController extends Controller
             $produto->nome = $request->nome;
             $produto->valor = $request->valor;
             $produto->descricao = $request->descricao;
-            $produto->id_user_criador = 0;
+            $produto->categoria = 0;//Trocar para a categoria posteriormente
+            $produto->id_user_criador = 0;//Trocar para o id do usuário posteriormente
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Produto Editado com sucesso!'
+                    'message' => 'Produto Editado com sucesso!',
+                    'produto' => $produto
                 ]);
             }
         } catch (\Exception $e) {

@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Model;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Produtos;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProdutosFactory extends Factory
 {
@@ -13,9 +12,7 @@ class ProdutosFactory extends Factory
     public function definition(): array
     {
     	return [
-            'nome' => $this->faker->name(),
-            'valor' => $this->faker->currencyCode(),
-            'descricao' => $this->faker->text(5000),
-        ];
+    	    //
+    	];
     }
 }

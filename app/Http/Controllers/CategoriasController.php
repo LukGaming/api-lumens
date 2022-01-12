@@ -20,7 +20,8 @@ class CategoriasController extends Controller
             if ($categoria->save()) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Categoria Criada com sucesso!'
+                    'message' => 'Categoria Criada com sucesso!',
+                    'categoria' => $categoria
                 ]);
             }
         } catch (\Exception $e) {
@@ -40,7 +41,8 @@ class CategoriasController extends Controller
                 if ($categoria->save()) {
                     return response()->json([
                         'status' => 'success',
-                        'message' => 'Categoria Editada com sucesso!'
+                        'message' => 'Categoria Editada com sucesso!',
+                        'categoria' => $categoria
                     ]);
                 }
             } catch (\Exception $e) {

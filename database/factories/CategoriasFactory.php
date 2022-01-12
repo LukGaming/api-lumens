@@ -12,8 +12,7 @@ class CategoriasFactory extends Factory
     public function definition(): array
     {
     	return [
-                'nome_categoria' => $this->faker->name(),
-                'user_id' => 0,
+    	    //
     	];
     }
 }

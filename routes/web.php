@@ -2,17 +2,30 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Http\Controllers\CategoriasController;
-use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutosController;
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    //Rotas de Produtos
-    $router->get('/produtos',  'ProdutoController@index');
-    $router->post('/produtos',  'ProdutoController@store');
-    $router->get('/produtos/{id}',  'ProdutoController@edit');
-    $router->patch('/produtos/{id}',  'ProdutoController@update');
-    $router->delete('/produtos/{id}',  'ProdutoController@destroy');
-    //Rotas de Produtos
+    $router->post('register', 'AuthController@register');
+    $router->post('login', 'AuthController@login');
+
+    /*Rotas de Produtos*/
+    $router->get('/produtos',  'ProdutosController@index');
+    $router->post('/produtos',  'ProdutosController@store');
+    $router->get('/produtos/{id}',  'ProdutosController@edit');
+    $router->patch('/produtos/{id}',  'ProdutosController@update');
+    $router->delete('/produtos/{id}',  'ProdutosController@destroy');
+    /*Rotas de Produtos*/
 
     //Rotas de Categorias
     $router->get('/categorias',  'CategoriasController@index');
@@ -22,7 +35,4 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->delete('/categorias/{id}',  'CategoriasController@destroy');
     //Rotas de Categorias
 
-    //Rotas de Usuarios
-    $router->get('/usuarios',  'UserController@index');
-    $router->post('/usuarios',  'UserController@store');
 });
