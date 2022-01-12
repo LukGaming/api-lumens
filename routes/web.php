@@ -3,7 +3,7 @@
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 use App\Http\Controllers\ProdutosController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,6 +18,8 @@ use App\Http\Controllers\ProdutosController;
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
+    $router->get('user/{id}', 'UserController@getUserById');
+
 
     /*Rotas de Produtos*/
     $router->get('/produtos',  'ProdutosController@index');
