@@ -20,8 +20,8 @@ class ProdutosController extends Controller
             $produto->nome = $request->nome;
             $produto->valor = $request->valor;
             $produto->descricao = $request->descricao;
+            $produto->id_categoria = $request->id_categoria;
             $produto->id_user_criador = 0;
-
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
@@ -44,7 +44,7 @@ class ProdutosController extends Controller
             $produto->nome = $request->nome;
             $produto->valor = $request->valor;
             $produto->descricao = $request->descricao;
-            $produto->categoria = 0;//Trocar para a categoria posteriormente
+            $produto->id_categoria = $request->id_categoria;//Trocar para a categoria posteriormente
             $produto->id_user_criador = 0;//Trocar para o id do usuário posteriormente
             if ($produto->save()) {
                 return response()->json([

@@ -19,7 +19,7 @@ class CategoriasController extends Controller
         try {
             $categoria = new Categorias();
             $categoria->nome_categoria = $request->nome_categoria;
-            $categoria->user_id = 0;//Trocar para o user Id da sessão depois
+            $categoria->user_id = $request->user_id;//Trocar para o user Id da sessão depois
             if ($categoria->save()) {
                 return response()->json([
                     'status' => 'success',
@@ -37,6 +37,7 @@ class CategoriasController extends Controller
     }
     public function update(Request $request, $id)
     {
+        
         $categoria = Categorias::findOrFail($id);
         if ($categoria) {
             try {

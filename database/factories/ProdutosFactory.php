@@ -11,8 +11,10 @@ class ProdutosFactory extends Factory
 
     public function definition(): array
     {
-    	return [
-    	    //
-    	];
+        return [
+            'nome' => $this->faker->name(),
+            'valor' => $this->faker->randomDigit().'00',
+            'descricao' => $this->faker->text(1000),
+        ];
     }
 }
