@@ -38,4 +38,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->delete('/categorias/{id}',  'CategoriasController@destroy');
     //Rotas de Categorias
     $router->post('/files', 'UploadImagesProductController@upload_image_produto');
+    $router->get('imagens/produtos/{id_produto}' ,'UploadImagesProductController@list_images_produto');
 });
