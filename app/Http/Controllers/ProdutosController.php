@@ -11,7 +11,7 @@ class ProdutosController extends Controller
 {
     public function index()
     {
-        return Produtos::paginate(10);
+        return Produtos::paginate(100);
     }
     public function store(Request $request)
     {

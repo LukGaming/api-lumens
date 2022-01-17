@@ -5,6 +5,7 @@
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\fileUploadsController;
+use App\Http\Controllers\UploadImagesProductController;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -36,5 +37,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->patch('/categorias/{id}',  'CategoriasController@update');
     $router->delete('/categorias/{id}',  'CategoriasController@destroy');
     //Rotas de Categorias
-    $router->post('/files', 'fileUploadsController@gettingFile');
+    $router->post('/files', 'UploadImagesProductController@upload_image_produto');
 });
