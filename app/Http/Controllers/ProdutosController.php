@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produtos;
-
-
+use App\Models\UploadImagesProduct;
 use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
@@ -21,7 +20,7 @@ class ProdutosController extends Controller
             $produto->valor = $request->valor;
             $produto->descricao = $request->descricao;
             $produto->id_categoria = $request->id_categoria;
-            $produto->id_user_criador = 0;
+            $produto->id_user_criador = $request->user_id;
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
@@ -45,7 +44,6 @@ class ProdutosController extends Controller
             $produto->valor = $request->valor;
             $produto->descricao = $request->descricao;
             $produto->id_categoria = $request->id_categoria;//Trocar para a categoria posteriormente
-            $produto->id_user_criador = 0;//Trocar para o id do usuário posteriormente
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
@@ -61,6 +59,8 @@ class ProdutosController extends Controller
     {
         try {
             $produto = Produtos::findOrFail($id);
+            UploadImagesProduct::where('id_produto', $produto->id)->delete();
+
             if ($produto->delete()) {
                 return response()->json([
                     'status' => 'success',
