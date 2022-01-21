@@ -40,4 +40,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('/files', 'UploadImagesProductController@upload_image_produto');
     $router->get('imagens/produtos/{id_produto}' ,'UploadImagesProductController@list_images_produto');
     $router->delete('imagens/produtos/{id_imagem}' ,'UploadImagesProductController@remove_image_producto');
+
+    // Rotas para perfil do usuário
+    $router->post('/perfil' ,'UploadImagesProductController@upload_image_b64');
 });

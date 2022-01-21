@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\UploadImagesProduct;
 use App\Providers\UploadImagesService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class UploadImagesProductController extends Controller
 {
@@ -20,18 +23,24 @@ class UploadImagesProductController extends Controller
             'id_produto' => $request->id_produto
         ]);
     }
-    public function list_images_produto(Request $request, $id_produto){
+    public function list_images_produto(Request $request, $id_produto)
+    {
         $imagens = UploadImagesProduct::where('id_produto', $id_produto)->get();
         return response()->json([
             'imagens_produto' => $imagens
         ]);
     }
-    public  function remove_image_producto(Request $request, $id_imagem){
+    public  function remove_image_producto(Request $request, $id_imagem)
+    {
         $imagem = UploadImagesProduct::where('id', $id_imagem)->first();
         UploadImagesService::removeImage($imagem->caminho_imagem_produto);
         UploadImagesProduct::where('id', $id_imagem)->delete();
         return response()->json([
             'success' => 'imagem deletada com sucesso!'
         ]);
+    }
+    public function upload_image_b64(Request $request)
+    {
+        $upload_imagem = UploadImagesService::upload_image_perfil_user($request->image);
     }
 }
