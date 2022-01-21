@@ -18,4 +18,7 @@ class UploadImagesService extends ServiceProvider
       $image->move(public_path("/uploads"), $picName);
       return 'uploads/' . $picName;
    }
+   public static function removeImage($caminho_imagem){
+      File::delete($caminho_imagem);
+   }
 }

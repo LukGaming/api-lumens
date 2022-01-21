@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Produtos;
 use App\Models\UploadImagesProduct;
+use App\Providers\UploadImagesService;
 use Illuminate\Http\Request;
+
 
 class ProdutosController extends Controller
 {
@@ -58,9 +60,15 @@ class ProdutosController extends Controller
     public function destroy($id)
     {
         try {
-            $produto = Produtos::findOrFail($id);
-            UploadImagesProduct::where('id_produto', $produto->id)->delete();
 
+            $produto = Produtos::findOrFail($id);
+            $caminho_imagens = UploadImagesProduct::where('id_produto', $produto->id)->get();
+            UploadImagesProduct::where('id_produto', $produto->id)->delete();
+            for($i=0; $i<count($caminho_imagens); $i++)
+            {
+                UploadImagesService::removeImage($caminho_imagens[$i]->caminho_imagem_produto);
+            }
+            
             if ($produto->delete()) {
                 return response()->json([
                     'status' => 'success',

@@ -27,6 +27,8 @@ class UploadImagesProductController extends Controller
         ]);
     }
     public  function remove_image_producto(Request $request, $id_imagem){
+        $imagem = UploadImagesProduct::where('id', $id_imagem)->first();
+        UploadImagesService::removeImage($imagem->caminho_imagem_produto);
         UploadImagesProduct::where('id', $id_imagem)->delete();
         return response()->json([
             'success' => 'imagem deletada com sucesso!'
