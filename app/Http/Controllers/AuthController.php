@@ -51,7 +51,6 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         //Getting User Data
-
         $credentials = $request->only(['email', 'password']);
 
         if (!$token = Auth::attempt($credentials)) {

@@ -11,6 +11,7 @@ class UploadImagesService extends ServiceProvider
    public static function uploads_images_from_product($image)
    {
       $picName = $image->getClientOriginalName();
+      
       $path = 'uploads' . DIRECTORY_SEPARATOR . 'produtos' . DIRECTORY_SEPARATOR;
       $picName = uniqid() . '_' . $picName;
       $destinationPath = public_path($path);
