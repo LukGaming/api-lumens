@@ -39,8 +39,4 @@ class UploadImagesProductController extends Controller
             'success' => 'imagem deletada com sucesso!'
         ]);
     }
-    public function upload_image_b64(Request $request)
-    {
-        $upload_imagem = UploadImagesService::upload_image_perfil_user($request->image);
-    }
 }

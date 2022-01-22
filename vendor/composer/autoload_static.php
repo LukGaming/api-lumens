@@ -29,8 +29,8 @@ class ComposerStaticInit23b233430fedd5eac965aa63a9f046c1
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        'bee9632da3ca00a99623b9c35d0c4f8b' => __DIR__ . '/..' . '/laravel/lumen-framework/src/helpers.php',
         'df7cc821128228bf36c2141e6b4f8b50' => __DIR__ . '/..' . '/irazasyed/larasupport/src/helpers.php',
+        'bee9632da3ca00a99623b9c35d0c4f8b' => __DIR__ . '/..' . '/laravel/lumen-framework/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -564,6 +564,7 @@ class ComposerStaticInit23b233430fedd5eac965aa63a9f046c1
         'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
         'App\\Listeners\\ExampleListener' => __DIR__ . '/../..' . '/app/Listeners/ExampleListener.php',
         'App\\Models\\Categorias' => __DIR__ . '/../..' . '/app/Models/Categorias.php',
+        'App\\Models\\PerfilUser' => __DIR__ . '/../..' . '/app/Models/PerfilUser.php',
         'App\\Models\\Produtos' => __DIR__ . '/../..' . '/app/Models/Produtos.php',
         'App\\Models\\UploadImagesProduct' => __DIR__ . '/../..' . '/app/Models/UploadImagesProduct.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

@@ -24,6 +24,7 @@ return array(
     'App\\Jobs\\Job' => $baseDir . '/app/Jobs/Job.php',
     'App\\Listeners\\ExampleListener' => $baseDir . '/app/Listeners/ExampleListener.php',
     'App\\Models\\Categorias' => $baseDir . '/app/Models/Categorias.php',
+    'App\\Models\\PerfilUser' => $baseDir . '/app/Models/PerfilUser.php',
     'App\\Models\\Produtos' => $baseDir . '/app/Models/Produtos.php',
     'App\\Models\\UploadImagesProduct' => $baseDir . '/app/Models/UploadImagesProduct.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
