@@ -7,7 +7,6 @@ use App\Models\UploadImagesProduct;
 use App\Providers\UploadImagesService;
 use Illuminate\Http\Request;
 
-
 class ProdutosController extends Controller
 {
     public function index()
@@ -18,21 +17,21 @@ class ProdutosController extends Controller
     {
         try {
             $produto = new Produtos();
-            $produto->nome = $request->nome;
-            $produto->valor = $request->valor;
-            $produto->descricao = $request->descricao;
-            $produto->id_categoria = $request->id_categoria;
+            $produto->nome = $request->produto['nome'];
+            $produto->valor = $request->produto['valor'];
+            $produto->descricao = $request->produto['descricao'];
             $produto->id_user_criador = $request->user_id;
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Produto Criado com sucesso!',
-                    'produto' => $produto
+                    'produto' => $produto,
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
+
     }
     public function edit($id)
     {
@@ -41,19 +40,19 @@ class ProdutosController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $produto =  Produtos::findOrFail($id);
-            $produto->nome = $request->nome;
-            $produto->valor = $request->valor;
-            $produto->descricao = $request->descricao;
-            $produto->id_categoria = $request->id_categoria;//Trocar para a categoria posteriormente
+            $produto = Produtos::findOrFail($id);
+            $produto->nome = $request->produto['nome'];
+            $produto->valor = $request->produto['valor'];
+            $produto->descricao = $request->produto['descricao'];
+            $produto->id_categoria = $request->id_categoria; //Trocar para a categoria posteriormente
             if ($produto->save()) {
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Produto Editado com sucesso!',
-                    'produto' => $produto
+                    'produto' => $produto,
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
@@ -64,18 +63,17 @@ class ProdutosController extends Controller
             $produto = Produtos::findOrFail($id);
             $caminho_imagens = UploadImagesProduct::where('id_produto', $produto->id)->get();
             UploadImagesProduct::where('id_produto', $produto->id)->delete();
-            for($i=0; $i<count($caminho_imagens); $i++)
-            {
+            for ($i = 0; $i < count($caminho_imagens); $i++) {
                 UploadImagesService::removeImage($caminho_imagens[$i]->caminho_imagem_produto);
             }
-            
+
             if ($produto->delete()) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Produto Removido com sucesso!'
+                    'message' => 'Produto Removido com sucesso!',
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
