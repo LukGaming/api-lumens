@@ -17,11 +17,18 @@ class ProdutosController extends Controller
     {
         try {
             $produto = new Produtos();
-            $produto->nome = $request->produto['nome'];
-            $produto->valor = $request->produto['valor'];
-            $produto->descricao = $request->produto['descricao'];
+            $produto->nome = $request->nome;
+            $produto->valor = $request->valor;
+            $produto->descricao = $request->descricao;
             $produto->id_user_criador = $request->user_id;
             if ($produto->save()) {
+                foreach ($request->file('images') as $image) {
+                    $image_path = UploadImagesService::uploads_images_from_product($image);
+                    $image_db = new UploadImagesProduct();
+                    $image_db->caminho_imagem_produto = $image_path;
+                    $image_db->id_produto = $produto->id;
+                    $image_db->save();
+                }
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Produto Criado com sucesso!',
